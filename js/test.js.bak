@@ -1,4 +1,4 @@
-/* branch min  ㅇㅇ
+/* branch min  ㅇㅇ merge
 $('h1').addClass('headline');
 
 var xhr = new XMLHttpRequest();
