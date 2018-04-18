@@ -1,4 +1,4 @@
-/* branch min 
+/* branch min  민재영 멍청이
 $('h1').addClass('headline');
 
 var xhr = new XMLHttpRequest();
