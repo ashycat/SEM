@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 /* branch min  민재영 멍청이
-=======
-/* branch min  ㅇㅇ
->>>>>>> 7dc9fb2ab847ee7f1817ad6fcab4cac385ec86db
 $('h1').addClass('headline');
 
 var xhr = new XMLHttpRequest();
