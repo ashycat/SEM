@@ -15,9 +15,7 @@ xhr.onload = function() {
 $('nav ul li ul li a').on('click', function(e) {
 	e.preventDefault();
 	var url = this.href;
-
+	console.log(url);
 	$('#container').remove();
-	$('#body').load(url + ' #content').hide().fadeIn('slow');
-	
-	
+	$('#contents').load(url).hide().fadeIn('slow');
 });
