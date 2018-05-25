@@ -22,37 +22,28 @@ Licence URI: http://www.os-templates.com/template-terms
   <header id="header" class="clear">
     <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
-      <h1><a href="index.html"><span style="font-family:'Malgun Gothic';">퇴직자 모니터링</span></a></h1>
+      <h1><a href="index.html"><span style="font-family:'Malgun Gothic';">2018년 하반기 권한검토 (10.15 ~ 10.22)</span></a></h1>
     </div>
-    <!-- ################################################################################################ -->
-    <nav id="mainav" class="fl_right">
-      <ul class="clear">
-        <li class="active"><a href="index.html">Home</a></li>
-        <li><a class="drop" href="#">퇴직자 모니터링</a>
-          <ul>
-            <li><a href="pages/gallery.html">원장관리</a></li>
-            <li><a href="pages/full-width.html">배치관리1</a></li>
-            <li><a href="pages/sidebar-left.html">SAM파일관리</a></li>
-            <li><a href="pages/sidebar-right.html">쿼리</a></li>
-          </ul>
-        </li>
-        <li><a class="drop" href="#">보안 예외 사항</a>
-          <ul>
-            <li><a href="#">TPAM</a></li>
-            <li><a href="#">SSI</a></li>
-          </ul>
-        </li>
-        <li><a class="drop" href="#">권한검토</a>
-          <ul>
-            <li><a href="#">Fast+</a></li>
-            <li><a href="#">DB계정 권한</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-    <!-- ################################################################################################ -->
   </header>
 </div>
+    <!-- ################################################################################################ -->
+  <div class="wrapper row2">
+    <header id="header" class="clear">
+      <nav id="mainav" class="fl_left">
+        <ul class="clear">
+          <li id="a" class="active"><a href="index.html">권한검토 조회</a></li>
+          <li id="b"><a href="pages/gallery.html">권한검토 수행</a></li>
+          <li id="c"><a href="pages/full-width.html">권한검토 현황</a></li>
+          <li id="d"><a href="pages/sidebar-left.html">권한조회/수정</a></li>
+          <li id="e"><a href="pages/sidebar-right.html">검토메일발신</a></li>
+        </ul>
+      </nav>
+      <button id="loginBtn" class="btn red fl_right">로그인</button>
+    </header>
+  </div class="wrapper row1">
+    <!-- ################################################################################################ -->
+
+
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -321,7 +312,8 @@ Licence URI: http://www.os-templates.com/template-terms
 <script src="layout/scripts/jquery.mobilemenu.js"></script>
 <script src="layout/scripts/jquery.flexslider-min.js"></script>
 <script src="layout/scripts/jquery-ui.js"></script>
-<script src="layout/scripts/tabulator.js"></script>
-<script src="js/test.js"></script>
+<script src="lib/jquery.session.js"></script>
+<script type="text/javascript" src="lib/DataTables/datatables.min.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>
