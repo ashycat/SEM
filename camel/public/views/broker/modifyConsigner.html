@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h3 class="modal-title">화주 수</h3>
+</div>
+<div class="modal-body" >    
+  <form>
+    <div class="form-group">  
+      <label class="col-sm-2 control-label">이름</label>
+      <div class="col-sm-10">
+        <input data-ng-model="name" class="form-control"/><br>
+      </div>
+      <label class="col-sm-2 control-label">사업자명/회사명</label>
+      <div class="col-sm-10">
+        <input data-ng-model="business" class="form-control"/><br>
+      </div>
+      <label class="col-sm-2 control-label">전화번호</label>
+      <div class="col-sm-10">
+        <input data-ng-model="telephone" class="form-control"/><br>
+      </div>
+      <label class="col-sm-2 control-label">핸드폰번호</label>
+      <div class="col-sm-10">
+        <input data-ng-model="handphone" class="form-control"/><br>
+      </div>
+      <label class="col-sm-2 control-label">주선소 ID</label>
+      <div class="col-sm-10">
+        <input data-ng-model="broker" class="form-control"/><br>
+      </div>
+      <div style="text-align:center;">
+        <button type="button" class="btn w-xs btn-primary" data-ng-click="updateOk()">Ok</button>
+        <button type="button" class="btn w-xs btn-default" data-ng-click="cancel()">cancel</button>
+      </div>
+    </div>
+  </form>
+</div>

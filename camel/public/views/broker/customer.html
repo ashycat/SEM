@@ -1,0 +1,88 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/menu.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="content" animate-panel effect="zoomIn">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="hpanel">
+                    <div class="hpanel">
+                        <tabset>
+                            <tab>
+                                <tab-heading>
+                                    차주
+                                </tab-heading>
+                                <div class="panel-body">
+                                    <strong>우리 주선소에 등록되어 있는 차량 목록 입니다. </strong>
+                                    <p></p>
+
+
+                                    
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab>
+                                <tab-heading>
+                                    화주
+                                </tab-heading>
+                                <div class="panel-body">
+                                    <strong>우리 주선소의 고객 (화주) 목록 입니다. </strong>
+                                    <div class="pull-right">
+                                        <a class="btn btn-primary btn-xs" ng-click="addConsigner()">등록</a>
+                                    </div>
+                            <p></p>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>사업자명</th>
+                                                <th>대표전화번호</th>
+                                                <th>대표핸드폰번호</th>
+                                                <th>도구</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="consigner in consigners">
+                                                <td>[[consigner.name]]</td>
+                                                <td>[[consigner.telephone]]</td>
+                                                <td>[[consigner.handphone]]</td>
+                                                <td><a href="#" ng-click="moveMap('consigner', $index)"><i class="fa fa-map-marker"></i></a></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </tab>
+                        </tabset>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hpanel hgreen">
+                    <div class="panel-heading hbuilt">
+                        [[currentTitle]] -  [[currentUserName]]
+                    </div>
+                    <div class="panel-body">
+                        <div class="text-muted font-bold m-b-xs">[[currentInformation]]</div>
+                    </div>
+                    <div class="border-right border-left">
+                        <section id="google-map" >
+                            <div id="map" ui-map="model.myMap" ui-options="mapOptions" style="height: 400px" class="map-canvas" ></div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Right sidebar -->
+<div id="right-sidebar" ng-include="'views/common/right_sidebar.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+
+<!-- Footer -->
+<footer class="footer" ng-include="'views/common/footer.html'"></footer>

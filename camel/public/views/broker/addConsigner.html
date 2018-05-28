@@ -1,0 +1,119 @@
+<div class="modal-header">
+    <h3 class="modal-title">화주 등록</h3>
+</div>
+<div class="modal-body" >    
+  <form class="form-horizontal">
+  
+    <u><h4>기본정보</h4></u>
+    <div class="form-group">  
+      <label class="col-sm-2 control-label" for="name">거래처명</label>
+      <div class="col-sm-4">
+        <input id="name" data-ng-model="name" class="form-control" value=""/><br>
+      </div>
+      <label class="col-sm-2 control-label">대표전화</label>
+      <div class="col-sm-4">
+        <input id="phone" data-ng-model="phone" class="form-control" value=""/><br>
+      </div>
+      
+      <!-- 담당자 영역 -->
+      <!-- TODO : 영역 전체를 + - 해야 하기 때문에 일단 Div로 ... --> 
+      <div>
+        <label class="col-sm-2 control-label">담당자명</label>
+        <div class="col-sm-10">
+          <input id="member_name" data-ng-model="member_name" class="form-control"/><br>
+        </div>
+        
+        <label class="col-sm-2 control-label">휴대전화</label>
+        <div class="col-sm-4">
+          <input id="member_handphone" data-ng-model="member_handphone" class="form-control"/><br>
+        </div>
+        <label class="col-sm-2 control-label">비상전화</label>
+        <div class="col-sm-4">
+          <input id="member_telephone" data-ng-model="member_telephone" class="form-control"/><br>
+        </div>
+        
+        <label class="col-sm-2 control-label">이메일</label>
+        <div class="col-sm-10">
+          <input id="member_email" data-ng-model="member_email" class="form-control"/><br>
+        </div>
+        
+        <label class="col-sm-2 control-label">추가정보</label>
+        <div class="col-sm-10">
+          <input id="member_description" data-ng-model="member_description" class="form-control"/><br>
+        </div>
+      </div>
+      <!-- 담당자 영역 -->
+      
+      <label class="col-sm-2 control-label">FAX</label>
+      <div class="col-sm-10">
+        <input id="fax" data-ng-model="fax" class="form-control" value=""/><br>
+      </div>
+     </div>
+      
+    <u><h4>사업자정보</h4></u>
+    <div class="form-group">  
+      <label class="col-sm-2 control-label" for="name">신고</label>
+      <div class="col-sm-4">
+        <select id="business_taxtype" class="form-control m-b" name="account" data-ng-model="business_taxtype">
+          <option value="">선택하세요</option>
+          <option value="1">간이과세</option>
+          <option value="2">일반과세</option>
+        </select>
+      </div>
+      <label class="col-sm-2 control-label">사업자번호</label>
+      <div class="col-sm-4">
+        <input id="business_license" data-ng-model="business_license" class="form-control"/><br>
+      </div>
+      
+      <label class="col-sm-2 control-label">대표자</label>
+      <div class="col-sm-4">
+        <input id="business_ceo_name" data-ng-model="business_ceo_name" class="form-control"/><br>
+      </div>
+      <label class="col-sm-2 control-label">상호</label>
+      <div class="col-sm-4">
+        <input id="business_name" data-ng-model="business_name" class="form-control"/><br>
+      </div>
+
+      <label class="col-sm-2 control-label">업태</label>
+      <div class="col-sm-4">
+          <ui-select ng-model="selectedItem.businessCondition"
+             theme="bootstrap"
+             ng-disabled="disabled"
+             reset-search-input="false" ng-change="setBusinessCondition()"> 
+          <ui-select-match placeholder="업태을 입력하세요">[[$select.selected.full_name]]</ui-select-match>
+          <ui-select-choices repeat="businessCondition in businessConditions track by $index"
+             refresh="refreshBusinessCondition($select.search)"
+             refresh-delay="0">
+            <div ng-bind-html="businessCondition.full_name | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+
+      </div>
+      <label class="col-sm-2 control-label">(업종)중목</label>
+      <div class="col-sm-4">
+        <ui-select ng-model="selectedItem.businessType"
+             theme="bootstrap"
+             ng-disabled="disabled"
+             reset-search-input="false" ng-change="setBusinessType()"> 
+          <ui-select-match placeholder="업종을 입력하세요">[[$select.selected.full_name]]</ui-select-match>
+          <ui-select-choices repeat="businessType in businessTypes track by $index"
+             refresh="refreshBusinessType($select.search)"
+             refresh-delay="0">
+            <div ng-bind-html="businessType.full_name | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+      
+      <label class="col-sm-2 control-label">주소</label>
+      <div class="col-sm-10">
+        <input id="business_address_id" data-ng-model="business_address_id" class="form-control"/><br>
+        <input id="business_address_detail" data-ng-model="business_address_detail" class="form-control"/><br>
+      </div>
+    </div>      
+     
+    <div style="text-align:center;">
+      <button type="button" class="btn w-xs btn-primary" ng-disabled="!canSave()" data-ng-click="insertOk()">등록</button>
+      <button type="button" class="btn w-xs btn-default" data-ng-click="cancel()">닫기</button>
+    </div>
+  </form>
+</div>

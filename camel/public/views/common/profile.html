@@ -1,0 +1,163 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/menu.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="content" animate-panel effect="zoomIn">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="hpanel">
+                    <div class="hpanel">
+                        <tabset>
+                            <tab>
+                                <tab-heading>
+                                    차주
+                                </tab-heading>
+                                <div class="panel-body">
+                                    <strong>우리 주선소에 등록되어 있는 차량 목록 입니다. </strong>
+                                    <p></p>
+        
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>차주 </th>
+                                                <th>전화번호/핸드폰번호 </th>
+                                                <th>차량모델 </th>
+                                                <th>적재량</th>
+                                                <th>차량번호 </th>
+                                                <th>도구</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>홍길동</td>
+                                                <td>070-1111-1111<br/>010-1111-1111</td>
+                                                <td>마이티</td>
+                                                <td>5톤</td>
+                                                <td>35나 4567</td>
+                                                <td><a href="#"><i class="fa fa-map-marker"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>홍길동</td>
+                                                <td>070-2222-2222<br/>010-2222-2222</td>
+                                                <td>라보</td>
+                                                <td>0.5톤</td>
+                                                <td>35나 8909</td>
+                                                <td><a href="#"><i class="fa fa-map-marker"></i></a></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab>
+                                <tab-heading>
+                                    화주
+                                </tab-heading>
+                                <div class="panel-body">
+                                    <strong>우리 주선소의 고객 (화주) 목록 입니다. </strong>
+                                    <p></p>
+        
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>차주 </th>
+                                                <th>차량모델 </th>
+                                                <th>적재량</th>
+                                                <th>차량번호 </th>
+                                                <th>도구</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>홍길동</td>
+                                                <td>마이티</td>
+                                                <td>5톤</td>
+                                                <td>35나 4567</td>
+                                                <td><a href="#"><i class="fa fa-check text-success"></i></a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>홍길동</td>
+                                                <td>라보</td>
+                                                <td>0.5톤</td>
+                                                <td>35나 8909</td>
+                                                <td><a href="#"><i class="fa fa-check text-success"></i></a></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>        
+                                </div>
+                            </tab>
+                        </tabset>
+                    </div>
+                </div>
+            </div>        
+            <div class="col-lg-6">
+                <div class="hpanel hgreen">
+                    <div class="panel-body">
+                        <div class="pull-right text-right">
+                            <div class="btn-group">
+                                <i class="fa fa-facebook btn btn-default btn-xs"></i>
+                                <i class="fa fa-twitter btn btn-default btn-xs"></i>
+                                <i class="fa fa-linkedin btn btn-default btn-xs"></i>
+                            </div>
+                        </div>
+                        <img alt="logo" class="img-circle m-b m-t-md" src="images/profile.jpg">
+                        <h3><a href="">Max Simson</a></h3>
+                        <div class="text-muted font-bold m-b-xs">California, LA</div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan.
+                        </p>
+                    </div>
+                    <div class="border-right border-left">
+                        <section id="map" ng-controller="common/googleMapController">
+                            <div ui-map="myMap" ui-options="mapOptions" style="height: 400px"></div>
+                        </section>
+                    </div>
+                    <div class="panel-body">
+                        <dl>
+                            <dt>Description lists</dt>
+                            <dd>A description list is perfect for defining terms.</dd>
+                            <dt>Euismod</dt>
+                            <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
+                            <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                            <dt>Malesuada porta</dt>
+                            <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+                        </dl>
+                    </div>
+                    <div class="panel-footer contact-footer">
+                        <div class="row">
+                            <div class="col-md-4 border-right">
+                                <div class="contact-stat"><span>Projects: </span> <strong>200</strong></div>
+                            </div>
+                            <div class="col-md-4 border-right">
+                                <div class="contact-stat"><span>Messages: </span> <strong>300</strong></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="contact-stat"><span>Views: </span> <strong>400</strong></div>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Right sidebar -->
+<div id="right-sidebar" ng-include="'views/common/right_sidebar.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+
+<!-- Footer -->
+<footer class="footer" ng-include="'views/common/footer.html'"></footer>

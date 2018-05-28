@@ -1,0 +1,67 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/menu.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="content" animate-panel>
+        <div >
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hpanel">
+                        <div class="panel-heading">
+                        <!--<div panel-tools></div>-->
+                             멤버관리 메뉴 
+                        </div>
+                        <div class="panel-body">
+                            <button class="btn btn-primary btn-sm" ng-click="addMemberPopup()">멤버 생성</button>
+                            <div class="gridStyle"> 
+                            
+                                <table id="example1" class="footable table table-stripped toggle-arrow-tiny footable-loaded default breakpoint" data-page-size="8" data-filter="#filter">
+                                    <thead>
+                                    <tr>
+                                        <th data-toggle="true" class="footable-visible footable-first-column footable-sortable">USER ID<span class="footable-sort-indicator"></span></th>
+                                        <th class="footable-visible footable-sortable">USER NAME<span class="footable-sort-indicator"></span></th>
+                                        <th class="footable-visible footable-sortable">ROLE<span class="footable-sort-indicator"></span></th>
+                                        <th class="footable-visible footable-sortable">TOOL<span class="footable-sort-indicator"></span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="footable-even" style="display: table-row;" ng-repeat="member in members">
+                                        <td class="footable-visible footable-first-column"><span class="footable-toggle"></span>[[member.user_id2]]</td>
+                                        <td class="footable-visible">[[member.user_name]]</td>
+                                        <td class="footable-visible">[[member.role]]</td>
+                                        <td style="padding:3px;">
+                                            <a class="btn btn-primary btn-xs" ng-click="updateMember($index)">수정</a>
+                                            <a class="btn btn-primary btn-xs" ng-click="deleteMember(member.broker_id, member.user_id)">삭제</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    </tfoot>
+                                </table>
+
+                               <div class="panel-footer" style="text-align:center;padding-top:0px;padding-bottom:0px;">
+                                <pagination boundary-links="true"  
+                                  total-items="[[members_info.size]]" ng-model="currentPage" ng-change="pageChanged()"
+                                  class="pagination-sm" previous-text="&lsaquo;" 
+                                  next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                                </pagination> 
+                              </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Right sidebar -->
+<div id="right-sidebar" ng-include="'views/common/right_sidebar.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+
+<!-- Footer -->
+<footer class="footer" ng-include="'views/common/footer.html'"></footer>
+

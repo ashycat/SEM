@@ -1,0 +1,37 @@
+<div class="modal-header">
+	<h3 class="modal-title">권한 수정 </h3>
+</div>
+<div class="modal-body">
+
+	<div 
+		style="animation-delay: 0.4s; -webkit-animation-delay: 0.4s;">
+		<div class="hpanel">
+			<div class="panel-heading">
+				[[role]]
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table cellpadding="1" cellspacing="1"
+						class="table table-condensed table-striped">
+						<thead>
+							<tr>
+								<th>Role</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="role in rolelist">
+								<td><label class="btn btn-info btn-circle">
+									<input type="checkbox" checklist-model="grouproles" checklist-value="role.name"></label><b>  [[role.name]] [[grouproles.name]]</b></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<button ng-click="ok()">ok</button>
+				<button ng-click="cancel()">cancel</button>
+			</div>
+		</div>
+	</div>
+</div>

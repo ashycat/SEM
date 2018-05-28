@@ -1,0 +1,138 @@
+[
+ {
+   name: '대쉬보드',
+   url: '/dashboard',
+   path: 'admin/dashboard',
+   roles: ['admin'],
+   visible:true,
+   deps: [
+         ],
+   desc : 'admin'
+ },
+ {
+   name: '프로필',
+   url: '/common/profile',
+   path: 'common/profile',
+   roles: ['admin'],
+   visible:false,
+   deps: [
+         ],
+   desc : 'USER'
+ },
+ {
+   name: '사용자관리',
+   path: 'admin/user',
+   roles: ['admin'],
+   visible:true,
+   sub: [{
+     name: '사용자 목록',
+     url: '/user/list',
+     path: 'admin/user/list',
+     roles: ['admin'],
+     visible:true,
+     deps: [
+           ],
+     desc : 'V0.1'
+   }, 
+   {
+   name: '롤 그룹',
+   url: '/admin/role_group/list',
+   path: 'admin/role_group/list',
+   roles: ['admin'],
+   visible:true,
+   deps: [
+   		'controllers/admin/role_group/grouproleListController',
+   		'controllers/admin/role_group/showGroupUserController',
+   		'controllers/admin/role_group/addRoleGroupController'
+         ],
+   desc : 'V1.0'
+   }]
+ },
+ {
+   name : '로그인', 
+   url: '/common/login',
+   path : 'common/login',
+   visible:false,
+   deps : [
+           ]
+ },
+ {
+   name: '헬프데스크',
+   path: 'common/helpdesk',
+   roles: ['all'],
+   visible:true,
+   sub: [{
+     name: '공지사항',
+     url: '/common/helpdesk/notice',
+     path: 'common/helpdesk/notice',
+     roles: ['ADMINISTRATOR'],
+     visible:true,
+     deps: [
+            'controllers/common/helpdesk/showNoticeController',
+            'controllers/common/helpdesk/addNoticeController'
+           ],
+     desc : '관리자'
+   }, {
+     name: '메시지',
+     url: '/common/helpdesk/message',
+     path: 'common/helpdesk/message',
+     roles: ['user'],
+     visible:true,
+     deps: [
+            'controllers/common/helpdesk/showMessageController',
+            'controllers/common/helpdesk/addMessageController'
+           ],
+     desc : '관리자'
+   }]
+ },
+ {
+   name: '차종관리',
+   path: 'common/trucktype',
+   roles: ['all'],
+   visible:true,
+   sub: [{
+     name: '차종목록',
+     url: '/common/trucktype',
+     path: 'common/trucktype',
+     roles: ['admin'],
+     visible:true,
+     deps: [
+            'controllers/common/trucktypeController',
+            'controllers/common/addTrucktypeController'
+            ],
+            desc : '관리자'
+   }, {
+     name: '차종별 중량 조회',
+     url: '/common/helpdesk/message',
+     path: 'common/helpdesk/message',
+     roles: ['user'],
+     visible:true,
+     deps: [
+            'controllers/common/helpdesk/showMessageController',
+            'controllers/common/helpdesk/addMessageController'
+            ],
+            desc : '관리자'
+   }]
+ },
+ {
+   name: '사용자 등록',
+   roles: ['all'],
+   url: '/common/register',
+   path: 'common/register',
+   visible:false,
+   deps: [
+         ]
+ },
+ {
+   name: '이메일 템플릿',
+   roles: ['admin'],
+   url: '/common/mail/mailtemplate',
+   path: 'common/mail/mailtemplate',
+   visible: true,
+   deps: [
+   			'controllers/common/mail/updateMailtemplateController',
+   			'controllers/common/mail/addMailtemplateController',
+   			'controllers/common/mail/manageReceiverGroupController'
+         ]
+ }
+]

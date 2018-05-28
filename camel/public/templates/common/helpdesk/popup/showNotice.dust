@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h3 class="modal-title">공지사항</h3>
+</div>
+<div class="modal-body" >
+    <div class="table-responsive">
+        <table cellpadding="1" cellspacing="1" class="table">
+            <tr>
+                <th style="width:50px;background-color:#F9F9F9;text-align:center;">
+                    번호
+                </th>
+                <td style="width:50px;">
+                    [[notice.id]]
+                </td>
+                <th style="width:50px;background-color:#F9F9F9;text-align:center;">
+                    제목
+                </th>
+                <td>
+                    [[notice.subject]]
+                </td>
+            </tr>
+            <tr>
+                <th style="background-color:#F9F9F9;text-align:center;">
+                    내용
+                </th>
+                <td colspan="3">
+                	<pre style="background-color:white;border:none;">[[notice.content]]</pre>
+                </td>
+            </tr>
+        </table>
+        <table cellpadding="1" cellspacing="1" class="table">
+            <colgroup>
+                <col width="150"/>
+                <col width="50"/>
+            </colgroup>
+            <thead>
+            		<tr style="width:50px;background-color:#F9F9F9;text-align:center;">
+                		<th>파일</th>
+                		<th>크기</th>
+                </tr>
+            </thead>
+            <tbody>
+            		<tr ng-repeat="file in files">
+                    <!--<td ng-click="fileDownload(file.upload_name,file.origin_name)" style="cursor:pointer; download=[[file.origin_name]]">[[file.origin_name]]</td> -->
+                    <td><a href="files/[[file.upload_name]]" download=[[file.origin_name]]>[[file.origin_name]]</a></td>
+                    <td>[[file.size]] KB</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn w-xs btn-danger" ng-if="showChangeButton()" data-ng-click="delete(notice.id)">Delete</button>
+    <button type="button" class="btn w-xs btn-default" data-ng-click="cancel()">cancel</button>
+</div>

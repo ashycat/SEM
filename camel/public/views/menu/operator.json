@@ -1,0 +1,94 @@
+[
+ {
+   name: '대쉬보드',
+   roles: ['operator'],
+   url: '/dashboard',
+   path: 'operator/dashboard',
+   visible:true,
+   deps: [
+         ],
+   desc : 'admin'
+ },
+ {
+   name: '프로필',
+   roles: ['user'],
+   url: '/common/profile',
+   path: 'common/profile',
+   visible:false,
+   deps: [
+         ],
+   desc : 'USER'
+ },
+ {
+   name: '사용자관리',
+   path: 'operator/user',
+   roles: ['admin', 'operator'],
+   visible:true,
+   sub: [{
+     name: '사용자 목록',
+     roles: ['operator'],
+     url: '/user/list',
+     path: 'operator/user/list',
+     visible:true,
+     deps: [
+           ],
+     desc : 'V1.0'
+   }, 
+   {
+     name: '롤 그룹',
+     roles: ['operator'],
+     url: '/admin/role_group/list',
+     path: 'admin/role_group/list',
+     visible:true,
+     deps: [
+           ],
+     desc : 'V1.0'
+   }]
+ },
+ {
+   name : '로그인', 
+   url: '/common/login',
+   path : 'common/login',
+   visible:false,
+   deps : [
+           ]
+ },
+ {
+   name: '헬프데스크',
+   path: 'common/helpdesk',
+   roles: ['all'],
+   visible:true,
+   sub: [{
+     name: '공지사항',
+     roles: ['all'],
+     url: '/common/helpdesk/notice',
+     path: 'common/helpdesk/notice',
+     visible:true,
+     deps: [
+            'controllers/common/helpdesk/showNoticeController',
+            'controllers/common/helpdesk/addNoticeController'
+           ],
+     desc : '관리자'
+   }, {
+     name: '메시지',
+     roles: ['user'],
+     url: '/common/helpdesk/message',
+     path: 'common/helpdesk/message',
+     visible:true,
+     deps: [
+            'controllers/common/helpdesk/showMessageController',
+            'controllers/common/helpdesk/addMessageController'
+           ],
+     desc : '관리자'
+   }]
+ },
+ {
+   name: '사용자 등록',
+   roles: ['USER', 'MANAGER', 'DESIGNER', 'ADMINISTRATOR'],
+   url: '/common/register',
+   path: 'common/register',
+   visible:false,
+   deps: [
+         ]
+ }
+]

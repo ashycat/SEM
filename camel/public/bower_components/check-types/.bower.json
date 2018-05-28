@@ -1,0 +1,27 @@
+{
+  "name": "check-types",
+  "version": "3.3.0",
+  "main": "src/check-types.min.js",
+  "ignore": [
+    "AUTHORS",
+    "component.json",
+    "HISTORY.md",
+    "README.md",
+    "config",
+    "node_modules",
+    "package.json",
+    "README.md",
+    "src/check-types.js",
+    "test"
+  ],
+  "homepage": "https://github.com/philbooth/check-types.js",
+  "_release": "3.3.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.3.0",
+    "commit": "cf37abd8493f99893e8efbf623a4f7b146b56802"
+  },
+  "_source": "git://github.com/philbooth/check-types.js.git",
+  "_target": "~3.3.0",
+  "_originalSource": "check-types"
+}

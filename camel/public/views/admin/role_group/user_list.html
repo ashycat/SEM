@@ -1,0 +1,44 @@
+<div class="modal-header">
+	<h3 class="modal-title">사용자 수정 </h3>
+</div>
+<div class="modal-body">
+
+	<div 
+		style="animation-delay: 0.4s; -webkit-animation-delay: 0.4s;">
+		<div class="hpanel">
+			<div class="panel-heading">
+				[[role]]
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<button class="btn btn-primary btn-sm" data-ng-click="addRoleGroupMember($index)">추가</button>
+					<table cellpadding="1" cellspacing="1"
+						class="table table-condensed table-striped">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>유저ID</th>
+								<th>이름</th>
+								<th>편집</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="user in groupuserlist">
+						
+								<td>[[user.id]]</td>
+								<td>[[user.user_id]]</td>
+								<td>[[user.user_name]]</td>
+								<td><button data-ng-click="userDeleteOk($index)">삭제</button></td>
+									
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<button ng-click="ok()">ok</button>
+				<button ng-click="cancel()">cancel</button>
+			</div>
+		</div>
+	</div>
+</div>

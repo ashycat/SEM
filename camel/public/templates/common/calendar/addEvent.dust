@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h3 class="modal-title">이벤트 등록</h3>
+</div>
+<div class="modal-body" >
+    <div class="table-responsive">
+        <table cellpadding="1" cellspacing="1" class="table">
+            <tr>
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;">
+                    제목
+                </th>
+                <td colspan="3">
+                    <input size="60" ng-model="subject"/>
+                </td>
+            </tr>
+            <tr ng-if="takeTime()">
+                <th style="background-color:#F9F9F9;text-align:center;">
+                    시작시간
+                </th>
+                <td style="padding-left:10px;width:200px;">
+                        <select name="start" ng-model="param.start" class="form-control" ng-change="selectStartTime()">
+                            <option ng-repeat="h in startTimes" value="[[h.value]]">[[h.name]]</option>
+                        </select>
+                </td>
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;">
+                    완료시간
+                </th>
+                <td style="padding-left:10px;width:200px;">
+                        <select name="end" ng-model="param.end" class="form-control">
+                            <option ng-repeat="h in endTimes" value="[[h.value]]">[[h.name]]</option>
+                        </select>
+                </td>
+            </tr>
+            <tr ng-if="!takeTime()">
+                <th style="background-color:#F9F9F9;text-align:center;">
+                    시작시간
+                </th>
+                <td >
+                	[[startTime]]
+                </td>
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;">
+                    완료시간
+                </th>
+                <td >
+                	[[endTime]]
+                </td>
+            </tr>            
+         </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn w-xs btn-primary" ng-disabled="!canSave()" ng-click="save()">Ok</button>
+    <button type="button" class="btn w-xs btn-default" ng-click="cancel()">cancel</button>
+</div>

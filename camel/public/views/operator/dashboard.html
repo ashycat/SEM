@@ -1,0 +1,157 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/menu.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="content" animate-panel effect="zoomIn">
+        <div class="row">
+            <div class="col-lg-12 text-center m-t-md">
+                <h2>화물프로</h2>
+                <p>
+                    <strong>주선소 화면</strong>
+                </p>
+            </div>
+        </div>
+        <div class="row">    
+            <div class="col-lg-6">
+                <div class="hpanel">
+                    <div class="panel-heading">
+                        <!-- div panel-tools></div -->
+                        공지사항
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive" style="height:250px;override:auto;">
+                            <!-- <table class="table table-striped"> -->
+                            <table cellpadding="1" cellspacing="1" class="table">
+                            <colgroup>
+                                <col width="50"/>
+                                <col />
+                                <col width="70"/>
+                                <col width="100"/>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th colspan="2">제목</th>
+                                    <th>게시일</th>
+                                    <th>게시자</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="note in notices">
+                                    <td>[[note.id]]</td>
+                                    <td colspan="2"><a ng-click='showNotice(note.id)'> [[note.subject]] </a></td>
+                                    <td>[[note.created | date : 'yyyy-MM-dd']]</td>
+                                    <td>[[note.user_id]]</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#/common/helpdesk/notice">공지사항 모두보기</a> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hpanel">
+                    <div class="panel-heading">
+                        <!-- div panel-tools></div -->
+                        메시지
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive" style="height:250px;override:auto;">
+                            <!-- <table class="table table-striped"> -->
+                            <table cellpadding="1" cellspacing="1" class="table">
+                            <colgroup>
+                                <col />
+                                <col width="70"/>
+                                <col width="100"/>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th colspan="2">제목</th>
+                                    <th>수신일</th>
+                                    <th>송신자</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="msg in messages">
+                                    <td colspan="2"><a ng-click='showMessage(msg.id)'> [[msg.subject]] </a></td>
+                                    <td>[[msg.created | date : 'yyyy-MM-dd']]</td>
+                                    <td>[[msg.user_id]]</td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="#/common/helpdesk/message">메시지 모두보기</a> 
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-lg-12 ">
+                <div class="hpanel">
+                    <div class="panel-heading">
+                        <div panel-tools></div>
+                        Dashboard information and statistics
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <div class="small">
+                                    <i class="fa fa-bolt"></i> Page views
+                                </div>
+                                <div>
+                                    <h1 class="font-extra-bold m-t-xl m-b-xs">226,802</h1>
+                                    <small>Page views in last month</small>
+                                </div>
+                                <div class="small m-t-xl">
+                                    <i class="fa fa-clock-o"></i> Data from January
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-center small">
+                                    <i class="fa fa-laptop"></i> Active users in current month
+                                    (December)
+                                </div>
+                                <div class="flot-chart" style="height: 160px">
+                                    <div flot class="flot-chart-content" dataset="chartUsersData"
+                                        options="chartUsersOptions"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <div class="small">
+                                    <i class="fa fa-clock-o"></i> Active duration
+                                </div>
+                                <div>
+                                    <h1 class="font-extra-bold m-t-xl m-b-xs">10 Months</h1>
+                                    <small>And four weeks</small>
+                                </div>
+                                <div class="small m-t-xl">
+                                    <i class="fa fa-clock-o"></i> Last active in 12.10.2015
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <span class="pull-right"> You have two new messages from <a
+                            href="">Monica Bolt</a>
+                        </span> Last update: 21.05.2015
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+
+<!-- Right sidebar -->
+<div id="right-sidebar" ng-include="'views/common/right_sidebar.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+
+<!-- Footer -->
+<footer class="footer" ng-include="'views/common/footer.html'"></footer>

@@ -1,0 +1,46 @@
+<!--  TODO : 검색 기능 필요  -->
+
+<div class="modal-header">
+    <h3 class="modal-title">차 등록</h3>
+</div>
+<div class="modal-body" style="padding-top:10px;padding-bottom:0px;">
+    <div class="table-responsive" style="overflow:visible;">
+        <label>멤버정보</label>
+            <table id="example1" class="footable table table-stripped toggle-arrow-tiny footable-loaded default breakpoint" data-page-size="8" data-filter="#filter">
+                <thead>
+                    <tr>
+                        <th data-toggle="true" class="footable-visible footable-first-column footable-sortable">USER ID<span class="footable-sort-indicator"></span></th>
+                        <th class="footable-visible footable-sortable">USER NAME<span class="footable-sort-indicator"></span></th>
+                        <th class="footable-visible footable-sortable">ROLE<span class="footable-sort-indicator"></span></th>
+                        <th class="footable-visible footable-sortable">TOOL<span class="footable-sort-indicator"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="footable-even" style="display: table-row;" ng-repeat="trucktype in addTrucktypes">
+                        <td class="footable-visible footable-first-column"><span class="footable-toggle"></span>[[trucktype.user_id]]</td>
+                        <td class="footable-visible">[[trucktype.user_name]]</td>
+                        <td class="footable-visible">
+                            <select class="form-control m-b" ng-model="member.broker_role">
+                                <option value="">선택하세요</option>
+                                <option value="TELER">TELER</option>
+                                <option value="MANAGER">MANAGER</option>
+                            </select>
+                        </td>
+                        <td style="padding:3px;">
+                            <a class="btn btn-primary btn-xs" ng-click="addMember($index)">등록</a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+              </tfoot>
+            </table>
+            <div class="panel-footer" style="text-align:center;padding-top:0px;padding-bottom:0px;">
+              <pagination boundary-links="true"  
+                total-items="[[addMembers_info.size]]" ng-model="currentPage" ng-change="pageChanged()"
+                class="pagination-sm" previous-text="&lsaquo;" 
+                next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+             </pagination> 
+           </div> 
+        </div>
+    </div>
+</div>

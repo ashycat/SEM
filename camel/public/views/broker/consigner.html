@@ -1,0 +1,37 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/menu.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="content" animate-panel>
+        <div >
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hpanel">
+                        <div class="panel-heading">
+                        <!--<div panel-tools></div>-->
+                             화주관리 메뉴 
+                        </div>
+                        <div class="panel-body">
+                            <button class="btn btn-primary btn-sm" data-ng-click="addConsigner()">화주 생성</button>
+                            <button class="btn btn-primary btn-sm" data-ng-click="addConsigner()">화주 수정</button>
+                            <button class="btn btn-primary btn-sm" data-ng-click="addConsigner()">화주 삭제</button>
+                            <button class="btn btn-primary btn-sm" data-ng-click="showMembers()">담당자</button>
+                            <div class="gridStyle" ng-grid="gridOptions"> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Right sidebar -->
+<div id="right-sidebar" ng-include="'views/common/right_sidebar.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+
+<!-- Footer -->
+<footer class="footer" ng-include="'views/common/footer.html'"></footer>

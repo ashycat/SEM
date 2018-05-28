@@ -1,0 +1,180 @@
+{
+    "tls" : {
+      "key": "file:./config/server.key",
+      "cert":"file:./config/server.cert"
+    },
+    
+    "express": {
+        "view cache": false,
+        "view engine": "js",
+        "views": "path:./.build/templates"
+    },
+
+    "view engines": {
+        "js": {
+            "module": "engine-munger",
+            "renderer": {
+                "method": "js",
+                "arguments": [
+                    { "cache": true },
+                    {
+                        "views": "config:express.views",
+                        "view engine": "config:express.view engine",
+                        "specialization": "config:specialization",
+                        "i18n": "config:i18n"
+                    }
+                ]
+            }
+        }
+    },
+    "specialization": "import:./specialization.json",
+
+    "i18n": {
+        "contentPath": "path:./locales",
+        "fallback": "en-US"
+    },
+    
+    "databaseConfig": {
+        "host": "127.0.0.1",
+        "user": "camel",
+        "password": "q1w2e3r4",
+        "database": "camel"
+    },
+    
+    "testDatabaseConfig": {
+      "host": "127.0.0.1",
+      "user": "camel",
+      "password": "q1w2e3r4",
+      "database": "camel_test"
+    },
+
+    
+    "oauth": {
+    	"facebook": {
+    	  	"FACEBOOK_APP_ID": "465889700244454",
+      		"FACEBOOK_APP_SECRET": "b25d8848f27a6892296cf2f10c229ad8",
+     		"callbackURL": "http://localhost:8000/api/facebook/auth/callback"
+    		}
+    },
+
+    "bcrypt": {
+        "difficulty": 8
+    },
+
+    "middleware": {
+
+        "static": {
+          "module": {
+            "arguments": [ "path:./.build" ]
+          }
+        },
+
+        "method-override": {
+          "enabled": true,
+          "priority": 75,
+          "module": {
+            "name": "path:./lib/method-override",
+            "arguments": [ "_method" ]
+          }
+        },
+
+        "expressView": {
+          "priority": 100,
+          "enabled": true,
+          "module": {
+            "name": "engine-munger/lib/expressView"
+          }
+        },
+
+        "fileNotFound": {
+          "enabled": true,
+          "priority": 130,
+          "module": {
+            "name": "path:./lib/errors/404",
+            "arguments": [ "errors/404" ]
+          }
+        },
+
+        "serverError": {
+          "enabled": true,
+            "priority": 140,
+            "module": {
+              "name" : "path:./lib/errors/500",
+              "arguments": [ "errors/500" ]
+            }
+        },
+
+        "ServiceUnavailable": {
+          "enabled": true,
+          "priority": 150,
+          "module": {
+            "name" : "path:./lib/errors/503",
+            "arguments": [ "errors/503" ]
+          }
+        },
+
+        "flash": {
+          "priority": 91,
+          "enabled": true,
+          "module": {
+            "name":"connect-flash",
+            "method": "flash"
+          }
+        },
+
+        "isAuthenticated": {
+          "enabled": false,
+          "priority": 111,
+          "module": {
+            "name":"path:./lib/auth",
+            "method": "isAuthenticated"
+          }
+        },
+
+        "injectUser": {
+          "enabled": true,
+          "priority": 112,
+          "module": {
+            "name":"path:./lib/auth",
+            "method": "injectUser"
+          }
+        },
+
+        "locale": {
+          "priority": 95,
+          "enabled": true,
+          "module": {
+            "name": "path:./lib/locale"
+          }
+        },
+        "spclContext": {
+          "enabled": false,
+          "priority": 105,
+          "module": {
+            "name": "path:./lib/specialization"
+          }
+        },
+        "appsec": {
+          "enabled": false,
+          "priority": 110,
+          "module": {
+            "name": "lusca",
+            "arguments": [
+              {
+                "csrf": true,
+                "xframe": "SAMEORIGIN",
+                "p3p": false,
+                "csp": false
+              }
+            ]
+          }
+        },
+        "router": {
+          "priority": 120,
+          "module": {
+            "arguments": [{ "directory": "path:./controllers" }]
+          }
+        }
+    }
+
+}

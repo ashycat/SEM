@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h3 class="modal-title">메시지</h3>
+</div>
+<div class="modal-body" >
+    <div class="table-responsive">
+        <table cellpadding="1" cellspacing="1" class="table">
+            <tr>
+                <th style="width:50px;background-color:#F9F9F9;text-align:center;">
+                    번호
+                </th>
+                <td style="width:50px;">
+                    [[message.id]]
+                </td>
+                <th style="width:50px;background-color:#F9F9F9;text-align:center;">
+                    제목
+                </th>
+                <td>
+                    [[message.subject]]
+                </td>
+            </tr>
+            <tr>
+                <th style="background-color:#F9F9F9;text-align:center;">
+                    내용
+                </th>
+                <td colspan="3">
+                	<pre style="background-color:white;border:none;">[[message.content]]</pre>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn w-xs btn-danger" ng-if="showChangeButton()" data-ng-click="delete(message.id)">Delete</button>
+    <button type="button" class="btn w-xs btn-default" data-ng-click="cancel()">cancel</button>
+</div>

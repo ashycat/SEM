@@ -1,0 +1,28 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/menu.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="content" animate-panel>
+        <div >
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hpanel">
+                        <div class="panel-heading">
+                        <!--<div panel-tools></div>-->
+                             사용자 관리
+                        </div>
+                        <div class="panel-body">
+                            <button class="btn btn-primary btn-sm" data-ng-click="addUser()">생성</button>
+                            <div class="gridStyle" ng-grid="gridOptions"> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

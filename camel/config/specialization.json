@@ -1,0 +1,33 @@
+{   
+        
+    "navigation_menu/guest": [
+        {
+            "is": "navigation_menu/user",
+            "when": {
+                
+                "userrole.is": "user"
+            }
+        },
+        {
+            "is": "navigation_menu/administrator",
+            "when": {
+                
+                "userrole.is": "administrator"
+            }
+        },
+        {
+            "is": "navigation_menu/designer",
+            "when": {
+                
+                "userrole.is": "designer"
+            }
+        },
+        {
+            "is": "navigation_menu/manager",
+            "when": {
+                
+                "userrole.is": "manager"
+            }
+        }
+    ]
+}

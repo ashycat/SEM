@@ -10,7 +10,7 @@ xhr.onload = function() {
   if (xhr.status == 200 ) {
     console.log("success");
   }
-}
+};
 
 
 $('nav ul li a').on('click', function(e) {
@@ -28,3 +28,10 @@ $('#loginBtn').on('click',function(e) {
   $('#d').hide();
   $('#e').hide();
 });
+/*
+require(["jquery.min.js"], function($) {
+       //이제 $ 에는 jQuery 객체가 담기게 된다.
+       var jQuery = $;
+       alert($().jquery);
+   });
+   */

@@ -1,0 +1,414 @@
+<div class="modal-header">
+    <h3 class="modal-title">오더 상세</h3>
+</div>
+<div class="modal-body" style="padding-top:10px;padding-bottom:0px;">
+    <div class="table-responsive" style="overflow:visible;">
+        <div collapse="isCollapsedGoods" animate="slow" ng-click="isCollapsedGoods = !isCollapsedGoods">
+            <table cellpadding="1" cellspacing="1" class="table" style="padding:5px;margin-bottom:5px;" >
+                <tr>
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px" rowspan="3">
+                        화물정보
+                    </th>
+                    <td style="padding:5px">
+                        <label style="padding-right:30px;">화주명 : [[goods.consigner]]</label>
+                        <label style="padding-right:30px;">화물종류 : [[goods.name]]</label>
+                        <label style="padding-right:30px;">혼적 : [[goods.is_mix | ox]]</label>
+                        <label style="padding-right:30px;">무게 : [[goods.weight]]톤(ton)</label>
+                        <label style="padding-right:30px;">길이 : [[goods.length]]미터(m)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:5px">
+                        <label>추가정보 : [[goods.description]]</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:5px">
+                        <label style="padding-right:20px;">보내는 사람 : [[goods.sender_name]]</label>
+                        <label style="padding-right:20px;">핸드폰 번호 : [[goods.sender_handphone]]</label>
+                        <label style="padding-right:20px;">전화번호 : [[goods.sender_telephone]]</label> <br/>
+                        <label style="padding-right:20px;">받는 사람 : [[goods.sendee_name]]</label>
+                        <label style="padding-right:20px;">핸드폰 번호 : [[goods.sendee_handphone]]</label>
+                        <label style="padding-right:20px;">전화번호 : [[goods.sendee_telephone]]</label>
+                    </td>
+                </tr>
+            </table> 
+        </div>
+        <div collapse="!isCollapsedGoods" animate="slow" ng-click="isCollapsedGoods = !isCollapsedGoods">
+            <table cellpadding="1" cellspacing="1" class="table" style="padding:5px;margin-bottom:5px;" >
+                <tr>
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px">
+                        화주명
+                    </th>
+                    <td style="width:320px;padding:5px;">
+                        <ui-select ng-model="params2.consigner"
+                            theme="bootstrap"
+                            ng-disabled="disabled"
+                            reset-search-input="false"
+                            style="width: 320px;" ng-change="setConsigner()">
+                            <ui-select-match placeholder="화주명을 입력해주세요.">[[$select.selected.full_name]]</ui-select-match>
+                            <ui-select-choices repeat="consigner in consigners track by $index"
+                                refresh="findConsigners($select.search)"
+                                refresh-delay="0">
+                                <div ng-bind-html="consigner.full_name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </td>
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        화물종류 
+                    </th>
+                    <td style="width:320px;padding:5px">
+                        <div class="checkbox-inline" style="padding-left:0px;">
+                            <ui-select ng-model="params2.goodsCategory"
+                                theme="bootstrap"
+                                ng-disabled="disabled"
+                                reset-search-input="false"
+                                style="width: 250px;">
+                                <ui-select-match placeholder="화물종류를 입력해주세요.">
+                                    [[$select.selected.category]] [[$select.selected.name]] 
+                                </ui-select-match>
+                                <ui-select-choices repeat="category in goodsCategories track by $index"
+                                    refresh="refreshGoodsCategory($select.search)"
+                                    refresh-delay="0">
+                                    <div ng-bind-html="category.full_name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="checkbox-inline">
+                            <label> <input icheck type="checkbox" ng-model="params.isMix"> 혼적 </label>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="padding:5px">
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        무게/길이 
+                    </th>
+                    <td style="padding:5px">
+                        <input type="text" id="weight" ng-model="params.goodsWeight" fcsa-number="{maxDigits:2, maxDecimals:0}" size="2" /> 톤(ton) &nbsp;&nbsp;&nbsp;
+                        <input type="text" id="height" ng-model="params.goodsLength" fcsa-number="{maxDigits:2, maxDecimals:0}" size="2" /> 미터(m)
+                    </td>
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        추가정보 
+                    </th>
+                    <td style="padding:5px">
+                        <input type="text" ng-model="params.description" size="40"/>
+                    </td>
+                </tr>
+                <tr style="padding:5px">
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        보내는 사람 
+                    </th>
+                    <td colspan="3" style="padding:5px">
+                        <table>
+                            <tr>
+                                <td style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">성명</td>
+                                <td><input type="text" ng-model="params.senderName" size="10"/></td>
+                                <td style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">전화번호 </td>
+                                <td><input type="text" ng-model="params.senderTelephone" ui-mask="999-9999-9999" size="12" /></td>
+                                <td style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">핸드폰번호 </td>
+                                <td><input type="text" ng-model="params.senderHandphone" ui-mask="999-9999-9999" size="12" /></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        받는 사람 
+                    </th>
+                    <td colspan="3" style="padding:5px">
+                        <table>
+                            <tr>
+                                <td style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">성명</td>
+                                <td><input type="text" ng-model="params.sendeeName" size="10"/></td>
+                                <td style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">전화번호 </td>
+                                <td><input type="text" ng-model="params.sendeeTelephone" ui-mask="999-9999-9999" size="12"/></td>
+                                <td style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">핸드폰번호 </td>
+                                <td><input type="text" ng-model="params.sendeeHandphone" ui-mask="999-9999-9999" size="12"/></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table> 
+        </div>
+        <div collapse="isCollapsedOrders" animate="slow" ng-click="isCollapsedOrders = !isCollapsedOrders">
+            <table cellpadding="1" cellspacing="1" class="table" style="padding:5px;margin-bottom:5px;" >
+                <tr>
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px" rowspan="4">
+                        오더정보
+                        <label style="color:blue;">[[order.type | orderType]]</label>
+                    </th>
+                    <td style="padding:5px">
+                        <label style="padding-right:30px;">상차지 : [[order.source]]</label>
+                        <label style="padding-right:30px;">상차일시 : [[order.load_datetime | date : 'yyyy-MM-dd hh:mm']]</label>
+                        <label style="padding-right:30px;">상차방법 : [[order.load_method | loadMethod]]</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:5px">
+                        <label style="padding-right:30px;">하차지 : [[order.destination]]</label>
+                        <label style="padding-right:30px;">하차일시 : [[order.unload_datetime | date : 'yyyy-MM-dd hh:mm']]</label>
+                        <label style="padding-right:30px;">하차방법 : [[order.unload_method | loadMethod]]</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:5px">
+                        <label style="padding-right:20px;">차종 : [[order.car_type]]</label>
+                        <label style="padding-right:20px;">톤수 : [[order.weight]]톤</label> 
+                        <label style="padding-right:20px;">긴급 : [[order.is_quick | ox]]</label> 
+                        <label style="padding-right:20px;">왕복 : [[order.is_shuttle | ox]]</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:5px">
+                        <label style="padding-right:20px;">지불방식 : [[order.payment_type | paymentType]]</label> 
+                        <label style="padding-right:20px;color:blue;">운송료 : [[order.freight | currency:'₩':0]]</label>
+                        <label style="padding-right:20px;color:blue;">수수료 : [[order.fee | currency:'₩':0]]</label>
+                        <label style="padding-right:20px;color:blue;">합계 : [[order.freight*1 + order.fee*1 | currency:'₩':0]]</label>
+                    </td>
+                </tr>
+            </table> 
+        </div>
+        <div collapse="!isCollapsedOrders" animate="slow" ng-click="isCollapsedOrders = !isCollapsedOrders">
+            <table cellpadding="1" cellspacing="1" class="table" style="padding:5px">
+                <tr style="padding:5px">
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        상차지
+                    </th>
+                    <td style="width:320px;padding:5px;">
+                        <ui-select ng-model="params2.source"
+                            theme="bootstrap"
+                            ng-disabled="disabled"
+                            reset-search-input="false"
+                            style="width: 320px;">
+                            <ui-select-match placeholder="지역명을 입력해주세요.">
+                                [[$select.selected.metro_name]] [[$select.selected.city_name1]] [[$select.selected.city_name2]] [[$select.selected.name]]
+                            </ui-select-match>
+                            <ui-select-choices repeat="source in sources track by $index"
+                                refresh="refreshSource($select.search)"
+                                refresh-delay="0">
+                                <div ng-bind-html="source.full_name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </td>
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        하차지
+                    </th>
+                    <td style="width:320px;padding:5px">
+                        <ui-select ng-model="params2.destination"
+                            theme="bootstrap"
+                            ng-disabled="disabled"
+                            reset-search-input="false"
+                            style="width: 320px;">
+                            <ui-select-match placeholder="지역명을 입력해주세요.">
+                                [[$select.selected.metro_name]] [[$select.selected.city_name1]] [[$select.selected.city_name2]] [[$select.selected.name]]
+                            </ui-select-match>
+                            <ui-select-choices repeat="dest in destinations track by $index"
+                                refresh="refreshDestination($select.search)"
+                                refresh-delay="0">
+                                <div ng-bind-html="dest.full_name | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </td>
+                </tr>
+                <tr style="padding:5px">
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        상차시간
+                    </th>
+                    <td style="width:300px;padding:5px;padding-left:0px;" >
+                        <div class="checkbox-inline" style="padding:0;padding-left:5px;margin-left:0px;">
+                            <radio-button-group class="btn-group" 
+                                data-toggle="buttons-radio" 
+                                model="params2.loadDay" 
+                                options="todayOrTom" 
+                                id="Props.id" 
+                                name="Props.name" 
+                                btnStyle="Props.btnStyle"></radio-button-group>
+                        </div>
+                        <div class="dropdown checkbox-inline" style="padding:0;padding-left:2px;margin-left:0px;">
+                            <a class="dropdown-toggle" id="dropdown-load" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                <div class="input-group">
+                                    <button class="btn btn-primary btn-xs" type="button"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker data-ng-model="params2.loadDate" 
+                                data-datetimepicker-config="{ minView:'day', dropdownSelector: '#dropdown-load' }"/>
+                            </ul>
+                        </div>
+                        <div class="checkbox-inline" style="padding:0;padding-left:5px;margin-left:0px;">
+                            <radio-button-group class="btn-group" 
+                                data-toggle="buttons-radio" 
+                                model="params2.loadAMPM" 
+                                options="ampm" 
+                                id="Props.id" 
+                                name="Props.name" 
+                                btnStyle="Props.btnStyle"></radio-button-group>
+                        </div>
+                        <div class="checkbox-inline" style="padding:0;padding-left:2px;margin-left:0px;height:25px;">
+                             <select class="form-control m-b" style="height:23px;width:70px;" ng-model="params2.loadHour" >
+                                <option ng-repeat="h in hours" value="[[h.value]]">[[h.name]]</option>
+                            </select>
+                        </div>
+                        <div class="checkbox-inline" style="padding:0;padding-left:2px;margin-left:0px;height:25px;">
+                            <radio-button-group class="btn-group" 
+                                data-toggle="buttons-radio" 
+                                model="params2.loadMinute" 
+                                options="oclock" 
+                                id="Props.id" 
+                                name="Props.name" 
+                                btnStyle="Props.btnStyle"></radio-button-group>
+                        </div>
+                        <label style="padding-left:5px;"> 
+                            [[getLoadDateTime()]]
+                        </label>
+                    </td>
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        하차시간
+                    </th>
+                    <td style="width:300px;padding:5px;padding-left:0px;">
+                        <div class="checkbox-inline" style="padding:0;padding-left:5px;margin-left:0px;">
+                            <radio-button-group class="btn-group" 
+                                data-toggle="buttons-radio" 
+                                model="params2.unloadDay" 
+                                options="todayOrTom" 
+                                id="Props.id" 
+                                name="Props.name" 
+                                btnStyle="Props.btnStyle"></radio-button-group>
+                        </div>
+                        <div class="dropdown checkbox-inline" style="padding:0;padding-left:2px;margin-left:0px;">
+                            <a class="dropdown-toggle" id="dropdown-unload" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                <div class="input-group">
+                                    <button class="btn btn-primary btn-xs" type="button"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker data-ng-model="params2.unloadDate" 
+                                data-datetimepicker-config="{ minView:'day', dropdownSelector: '#dropdown-unload' }"/>
+                            </ul>
+                        </div>
+                        <div class="checkbox-inline" style="padding:0;padding-left:5px;margin-left:0px;">
+                            <radio-button-group class="btn-group" 
+                                data-toggle="buttons-radio" 
+                                model="params2.unloadAMPM" 
+                                options="ampm" 
+                                id="Props.id" 
+                                name="Props.name" 
+                                btnStyle="Props.btnStyle"></radio-button-group>
+                        </div>
+                        <div class="checkbox-inline" style="padding:0;padding-left:2px;margin-left:0px;height:25px;">
+                             <select class="form-control m-b" style="height:23px;width:70px;" ng-model="params2.unloadHour" >
+                                <option ng-repeat="h in hours" value="[[h.value]]">[[h.name]]</option>
+                            </select>
+                        </div>
+                        <div class="checkbox-inline" style="padding:0;padding-left:2px;margin-left:0px;height:25px;">
+                            <radio-button-group class="btn-group" 
+                                data-toggle="buttons-radio" 
+                                model="params2.unloadMinute" 
+                                options="oclock" 
+                                id="Props.id" 
+                                name="Props.name" 
+                                btnStyle="Props.btnStyle"></radio-button-group>
+                        </div>
+                        <label ng-show="getUnLoadDateTime().length>0" style="padding-left:5px;"> 
+                            [[getUnLoadDateTime()]]
+                        </label>
+                    </td>
+                </tr>
+                <tr style="padding:5px">
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        상차방법
+                    </th>
+                    <td style="width:300px;padding:5px;">
+                        <radio-button-group class="btn-group" 
+                            data-toggle="buttons-radio" 
+                            model="params.loadMethod" 
+                            options="loadMethods" 
+                            id="Props.id" 
+                            name="Props.name" 
+                            btnStyle="Props.btnStyle"></radio-button-group>
+                        <label>[[params.loadMethod]]</label>
+                    </td>
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        하차방법
+                    </th>
+                    <td style="width:300px;padding:5px">
+                        <radio-button-group class="btn-group" 
+                            data-toggle="buttons-radio" 
+                            model="params.unloadMethod" 
+                            options="loadMethods" 
+                            id="Props.id" 
+                            name="Props.name" 
+                            btnStyle="Props.btnStyle"></radio-button-group>
+                        <label>[[params.unloadMethod]]</label>
+                    </td>
+                </tr>
+                <tr style="padding:5px">
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        톤수
+                    </th>
+                    <td style="width:350px;padding:5px">
+                        <radio-button-group class="btn-group" 
+                            data-toggle="buttons-radio" 
+                            model="params.truckWeight" 
+                            id="Props.id" 
+                            name="Props.name" 
+                            options="weights" 
+                            btnStyle="Props.btnStyle"></radio-button-group>
+                        <label>[[params.truckWeight]]</label>
+                    </td>
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        차량 대수
+                    </th>
+                    <td style="width:300px;padding:5px">
+                        <div class="checkbox-inline" style="padding:0;padding-left:5px;margin-left:0px;height:25px;">
+                            <input type="text" ng-model="params.truckCount" size="2" />
+                        </div>
+                    </td>
+                </tr>
+                <tr style="padding:5px">
+                    <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                        지불방식<br/>운송/수수료
+                    </th>
+                    <td colspan="3" style="width:300px;padding:5px;">
+                        <form name="form">
+                            <div class="checkbox-inline" style="padding:0;padding-left:0px;margin-left:0px;">
+                                <radio-button-group class="btn-group" 
+                                    data-toggle="buttons-radio" 
+                                    model="params.paymentType" 
+                                    id="Props.id" 
+                                    name="Props.name" 
+                                    options="paymentType" 
+                                    btnStyle="Props.btnStyle"></radio-button-group>
+                            </div>
+                            <div class="form-group checkbox-inline" ng-class="{ 'has-error': form.freight.$invalid }" style="padding-left:5px;">
+                                <input type="text" fcsa-number="{prepend: '₩', maxDigits:7, maxDecimals:0}"  maxlength="7"
+                                       ng-model="params.freight" name="freight" class="form-control" 
+                                       style="width:110px;height:25px;padding:5px 5px;" 
+                                       placeholder="운송료"/>
+                            </div>
+                            <div class="form-group checkbox-inline" ng-class="{ 'has-error': form.fee.$invalid }" style="padding-left:5px;">
+                                <input type="text" fcsa-number="{prepend: '₩', maxDigits:6, maxDecimals:0}" maxlength="6"
+                                       ng-model="params.fee" name="fee" class="form-control" 
+                                       style="width:90px;height:25px;padding:5px 5px;" 
+                                       placeholder="수수료"/>
+                            </div>
+                            <div class="form-group checkbox-inline" style="padding-left:5px;">
+                                합계 : [[params.freight*1 + params.fee*1 | currency:'₩':0]]
+                            </div>
+                            <div class="checkbox-inline" style="padding:0;padding-left:150px;margin-left:0px;height:25px;">
+                                <label> <input icheck type="checkbox" ng-model="params.isQuick"> 긴급 </label>
+                            </div>
+                            <div class="checkbox-inline" >
+                                <label> <input icheck type="checkbox" ng-model="params.isShuttle"> 왕복 </label>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </table>        
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn w-xs btn-primary" ng-click="allocOrder()">신청</button>
+    <button type="button" class="btn w-xs btn-default" ng-click="cancel()">취소</button>
+</div>

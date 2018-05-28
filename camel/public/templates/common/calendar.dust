@@ -1,0 +1,33 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/menu.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="content" animate-panel>
+    	<div class="row">
+		    <div class="col-lg-12">
+		        <div class="hpanel">
+		            <div class="panel-heading">
+		                <div panel-tools></div>
+		                Calendar
+		            </div>
+		            <div class="panel-body">
+		                <div class="btn-toolbar">
+		                </div>
+		                <br/>
+		                <div ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
+		            </div>
+		        </div>
+		    </div>
+	    </div>
+	</div>
+</div>
+
+<!-- Right sidebar -->
+<div id="right-sidebar" ng-include="'views/common/right_sidebar.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+
+<!-- Footer -->
+<footer class="footer" ng-include="'views/common/footer.html'"></footer>

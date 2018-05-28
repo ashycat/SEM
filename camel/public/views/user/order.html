@@ -1,0 +1,280 @@
+<!-- Header -->
+<div id="header" ng-include="'views/common/header.html'"></div>
+
+<!-- Navigation -->
+<aside id="menu" ng-include="'views/common/menu.html'"></aside>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+    <div class="content" animate-panel effect="zoomIn">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="hpanel" style="margin-bottom:5px;">
+                    <tabset>
+                        <tab>
+                            <tab-heading>
+                                일반오더
+                            </tab-heading>
+                            <div class="panel-heading hbuilt">
+                                <div class="pull-right">
+                                    <a class="btn btn-primary btn-xs" ng-click="getOrderList('NORMAL')"><i class="fa fa-refresh"></i></a>
+                                </div>
+                                목록 (총오더수 : [[normal_orders_info.size]]건)
+                            </div>
+                            <div class="panel-body h-350" style="padding:10px">
+                                <div class="m-t">
+                                    <table cellpadding="1" cellspacing="1" class="table table-striped" style="padding:3px;">
+                                        <colgroup>
+                                            <col width="60"/>
+                                            <col width="130"/>
+                                            <col width="130"/>
+                                            <col width="150"/>
+                                            <col width="50"/>
+                                            <col width="40"/>
+                                            <col width="30"/>
+                                            <col width="50"/>
+                                        </colgroup>
+                                        <thead>
+                                            <tr style="padding:3px;">
+                                                <th style="padding:3px;">등록일시</th>
+                                                <th style="padding:3px;">상차 지역/일시/방법</th>
+                                                <th style="padding:3px;">하차 지역/일시/방법</th>
+                                                <th style="padding:3px;">화물정보</th>
+                                                <th style="padding:3px;">운송료 (₩)</th>
+                                                <th style="padding:3px;">수수료 (₩)</th>
+                                                <th style="padding:3px;">톤수</th>
+                                                <th style="padding:3px;">도구</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="order in normal_orders"  style="padding:3px;">
+                                                <td style="padding:3px;">[[order.created | date : 'MM-dd hh:mm']]</td>
+                                                <td style="padding:3px;">
+                                                    [[order.source]] <br/>
+                                                    [[order.load_datetime | date : 'MM-dd hh:mm']] / 
+                                                    [[order.load_method | loadMethod]]
+                                                </td>
+                                                <td style="padding:3px;">
+                                                    [[order.destination]]<br/>
+                                                    [[order.unload_datetime | date : 'MM-dd hh:mm']] / 
+                                                    [[order.unload_method | loadMethod]]
+                                                </td>
+                                                <td style="padding:3px;">
+                                                    [[order.goods_names]]/[[order.goods_weight]]t/[[order.goods_length]]m  <br/>
+                                                    [[order.description]]
+                                                </td>
+                                                <td style="padding:3px;text-align:right;">[[order.freight | currency:'':0]]</td>
+                                                <td style="padding:3px;text-align:right;">[[order.fee | currency:'':0]]</td>
+                                                <td style="padding:3px;text-align:center;">[[order.weight]]</td>
+                                                <td style="padding:3px;">
+                                                    <a class="btn btn-primary btn-xs" ng-click="allocOrder('NORMAL', order.id)" style="padding:5px;">신청</a>
+                                                    <a class="btn btn-primary btn-xs" ng-click="showOrder('NORMAL', order.id)"  style="padding:5px;">상세</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="panel-footer" style="text-align:center;padding-top:0px;padding-bottom:0px;">
+                                <pagination boundary-links="true"  
+                                    total-items="normal_orders_info.size" ng-model="page.normal" ng-change="normalPageChanged()"
+                                    class="pagination-sm" previous-text="&lsaquo;" 
+                                    next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                                </pagination> 
+                            </div>
+                        </tab>
+                        <tab>
+                            <tab-heading>
+                                공유오더
+                            </tab-heading>
+                            <div class="panel-heading hbuilt">
+                                <div class="pull-right">
+                                    <a class="btn btn-primary btn-xs" ng-click="getOrderList('SHARE')"><i class="fa fa-refresh"></i></a>
+                                </div>
+                                목록 (총오더수 : [[share_orders_info.size]]건)
+                            </div>
+                            <div class="panel-body h-400" style="padding:10px">
+                                <div class="m-t">
+                                    <table cellpadding="1" cellspacing="1" class="table table-striped" style="padding:3px;">
+                                        <colgroup>
+                                            <col width="60"/>
+                                            <col width="130"/>
+                                            <col width="130"/>
+                                            <col width="150"/>
+                                            <col width="50"/>
+                                            <col width="40"/>
+                                            <col width="30"/>
+                                            <col width="50"/>
+                                        </colgroup>
+                                        <thead>
+                                            <tr style="padding:3px;">
+                                                <th style="padding:3px;">등록일시</th>
+                                                <th style="padding:3px;">상차 지역/일시/방법</th>
+                                                <th style="padding:3px;">하차 지역/일시/방법</th>
+                                                <th style="padding:3px;">화물정보</th>
+                                                <th style="padding:3px;">운송료 (₩)</th>
+                                                <th style="padding:3px;">수수료 (₩)</th>
+                                                <th style="padding:3px;">톤수</th>
+                                                <th style="padding:3px;">도구</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="order in share_orders"  style="padding:3px;">
+                                                <td style="padding:3px;">[[order.created | date : 'MM-dd hh:mm']]</td>
+                                                <td style="padding:3px;">
+                                                    [[order.source]] <br/>
+                                                    [[order.load_datetime | date : 'MM-dd hh:mm']] / 
+                                                    [[order.load_method | loadMethod]]
+                                                </td>
+                                                <td style="padding:3px;">
+                                                    [[order.destination]]<br/>
+                                                    [[order.unload_datetime | date : 'MM-dd hh:mm']] / 
+                                                    [[order.unload_method | loadMethod]]
+                                                </td>
+                                                <td style="padding:3px;">
+                                                    [[order.goods_names]]/[[order.goods_weight]]t/[[order.goods_length]]m <br/>
+                                                    [[order.description]]
+                                                </td>
+                                                <td style="padding:3px;text-align:right;">[[order.freight | currency:'':0]]</td>
+                                                <td style="padding:3px;text-align:right;">[[order.fee | currency:'':0]]</td>
+                                                <td style="padding:3px;text-align:center;">[[order.weight]]</td>
+                                                <td style="padding:3px;">
+                                                    <a class="btn btn-primary btn-xs" ng-click="allocOrder('SHARE', order.id)" style="padding:5px;">신청</a>
+                                                    <a class="btn btn-primary btn-xs" ng-click="showOrder('SHARE', order.id)"  style="padding:5px;">상세</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="panel-footer" style="text-align:center;padding-top:0px;padding-bottom:0px;">
+                                <pagination boundary-links="true"  
+                                    total-items="share_orders_info.size" ng-model="shareCurrentPage" ng-change="sharePageChanged()"
+                                    class="pagination-sm" previous-text="&lsaquo;" 
+                                    next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                                </pagination> 
+                            </div>
+                        </tab>
+                        <tab>
+                            <tab-heading>
+                                신청내역
+                            </tab-heading>
+                            <div class="panel-heading hbuilt">
+                                <div class="pull-right">
+                                    <a class="btn btn-primary btn-xs" ng-click="getAllocatedOrderList()"><i class="fa fa-refresh"></i></a>
+                                </div>
+                                목록 (총오더수 : [[allocated_orders_info.size]]건)
+                            </div>
+                            <div class="panel-body h-400" style="padding:10px">
+                                <div class="m-t">
+                                    <table cellpadding="1" cellspacing="1" class="table table-striped" style="padding:3px;">
+                                        <colgroup>
+                                            <col width="60"/>
+                                            <col width="130"/>
+                                            <col width="130"/>
+                                            <col width="150"/>
+                                            <col width="50"/>
+                                            <col width="40"/>
+                                            <col width="30"/>
+                                            <col width="50"/>
+                                        </colgroup>
+                                        <thead>
+                                            <tr style="padding:3px;">
+                                                <th style="padding:3px;">신청일시</th>
+                                                <th style="padding:3px;">상차 지역/일시/방법</th>
+                                                <th style="padding:3px;">하차 지역/일시/방법</th>
+                                                <th style="padding:3px;">화물정보</th>
+                                                <th style="padding:3px;">운송료 (₩)</th>
+                                                <th style="padding:3px;">수수료 (₩)</th>
+                                                <th style="padding:3px;">톤수</th>
+                                                <th style="padding:3px;">도구</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="order in allocated_orders"  style="padding:3px;">
+                                                <td style="padding:3px;">[[order.allocated | date : 'MM-dd hh:mm']]</td>
+                                                <td style="padding:3px;">
+                                                    [[order.source]] <br/>
+                                                    [[order.load_datetime | date : 'MM-dd hh:mm']] / 
+                                                    [[order.load_method | loadMethod]]
+                                                </td>
+                                                <td style="padding:3px;">
+                                                    [[order.destination]]<br/>
+                                                    [[order.unload_datetime | date : 'MM-dd hh:mm']] / 
+                                                    [[order.unload_method | loadMethod]]
+                                                </td>
+                                                <td style="padding:3px;">
+                                                    [[order.goods.name]]/[[order.goods.weight]]t/[[order.goods.length]]m <br/>
+                                                    [[order.goods.description]]
+                                                </td>
+                                                <td style="padding:3px;text-align:right;">[[order.freight | currency:'':0]]</td>
+                                                <td style="padding:3px;text-align:right;">[[order.fee | currency:'':0]]</td>
+                                                <td style="padding:3px;text-align:center;">[[order.weight]]</td>
+                                                <td style="padding:3px;">
+                                                    <a class="btn btn-primary btn-xs" ng-click="cancelAlloc(order.id)" style="padding:5px;">취소</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="panel-footer" style="text-align:center;padding-top:0px;padding-bottom:0px;">
+                                <pagination boundary-links="true" 
+                                    total-items="allocated_orders_info.size" ng-model="allocCurrentPage" ng-change="allocPageChanged()"
+                                    class="pagination-sm" previous-text="&lsaquo;" 
+                                    next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;">
+                                </pagination> 
+                            </div>
+                        </tab>                        
+                    </tabset>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="row">
+                    <div class="hpanel hblue" style="margin-bottom:5px;">
+                        <div class="panel-heading ">
+                            <div panel-tools></div>
+                            검색 조건 
+                        </div>
+                        <div class="panel-body h-350">
+                            <div class="m-t-xl" style="margin-top:0px">
+                                <table cellpadding="1" cellspacing="1" class="table">
+                                    <colgroup>
+                                        <col width="60"/>
+                                        <col width="80"/>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>검색키</th>
+                                            <th>검색값</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>            
+         </div>
+         <div class="row">
+            <div class="col-lg-10">
+                <div class="hpanel" style="margin-bottom:5px;">
+                </div>
+            </div>
+        </div>   
+    </div>
+</div>
+
+<!-- Right sidebar -->
+<div id="right-sidebar" ng-include="'views/common/right_sidebar.html'" class="sidebar-open" ng-show="rightSidebar"></div>
+
+<!-- Footer -->
+<footer class="footer" ng-include="'views/common/footer.html'"></footer>

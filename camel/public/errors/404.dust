@@ -1,0 +1,16 @@
+{>"templates/layouts/master" /}
+
+<div class="color-line"></div>
+<div class="pull-left m">
+    <a href="/" class="btn btn-primary">Back to Dashboard</a>
+</div>
+<div class="error-container">
+    <i class="pe-7s-way text-success big-icon"></i>
+    <h1>404</h1>
+    <strong>{@pre type="content" key="header"/}</strong>
+    <p>
+       {@pre type="content" key="description"/}   
+    </p>
+    <a href="/" class="btn btn-xs btn-success">Go back to dashboard</a>
+</div>
+

@@ -1,0 +1,124 @@
+[{
+   name: '대쉬보드',
+   roles: ['all'],
+   url: '/u/dashboard',
+   path: 'user/dashboard',
+   visible:true,
+   deps: [
+         ],
+   desc : 'admin'
+ },
+ {
+   name: '오더',
+   roles: ['admin', 'operator', 'truck_user'],
+   url: '/order',
+   path: 'user/order',
+   visible:true,
+   deps: [
+          'controllers/user/showOrderController',
+          'controllers/user/allocOrderController'
+         ],
+   desc : 'hot'
+ },
+ {
+   name: '캘린더',
+   roles: ['truck_user'],
+   url: '/common/calendar',
+   path: 'common/calendar',
+   visible:true,
+   deps: [
+          'controllers/common/calendarController',
+          'controllers/common/calendar/addEventController',
+          'controllers/common/calendar/showEventController'
+         ]
+ },
+ {
+   name: '통계',
+   roles: ['truck_user'],
+   url: '/u/statistics',
+   path: 'user/statistics',
+   visible:true,
+   deps: [
+          'controllers/user/statisticsController'
+         ]
+ },
+ {
+   name: 'Landing Page',
+   roles: ['all'],
+   url: '/common/landing',
+   path: 'common/landing',
+   visible:true,
+   deps: [
+          'controllers/common/landingController'
+         ]
+ },
+ {
+   name: '헬프데스크',
+   path: 'common/helpdesk',
+   roles: ['all'],
+   visible:true,
+   sub: [{
+     name: '공지사항',
+     roles: ['all'],
+     url: '/common/helpdesk/notice',
+     path: 'common/helpdesk/notice',
+     visible:true,
+     deps: [
+            'controllers/common/helpdesk/showNoticeController',
+            'controllers/common/helpdesk/addNoticeController'
+           ]
+   }, {
+     name: '메시지',
+     roles: ['user'],
+     url: '/common/helpdesk/message',
+     path: 'common/helpdesk/message',
+     visible:true,
+     deps: [
+            'controllers/common/helpdesk/showMessageController',
+            'controllers/common/helpdesk/addMessageController'
+           ]
+   }]
+ },
+ {
+   name: '프로필',
+   roles: ['user'],
+   url: '/common/profile',
+   path: 'common/profile',
+   visible:false,
+   deps: [
+         ],
+   desc : 'USER'
+ },
+ {
+   name : '로그인', 
+   url: '/common/login',
+   path : 'common/login',
+   visible:false,
+   deps : [
+           ]
+ },
+ {
+   name : '회원가입', 
+   url: '/common/register',
+   path : 'common/register',
+   visible:false,
+   deps : [
+           ]
+ },
+ {
+   name : '아이디/패스워드 찾기', 
+   url: '/common/findid',
+   path : 'common/findid',
+   visible:false,
+   deps : [
+           ]
+ },
+ {
+   name : '패스워드 재설정', 
+   url: '/common/resetPassword',
+   path : 'common/resetPassword',
+   visible:false,
+   deps : [
+           ]
+ }
+]

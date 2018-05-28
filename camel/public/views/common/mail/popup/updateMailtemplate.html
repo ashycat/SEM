@@ -1,0 +1,33 @@
+<div class="content" animate-panel>
+	<div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="hpanel">
+					<div class="panel-heading">
+						<!--<div panel-tools></div>-->
+						이메일 템플릿 수정
+					</div>
+					<div class="panel-body">
+						<table cellpadding="1" cellspacing="1" class="table">
+							<tr>
+								<th	style="background-color: #F9F9F9; text-align: center;">
+									제목</th>
+								<td><input size="100" ng-model="subject" /></td>
+							</tr>
+							<tr>
+								<th style="background-color: #F9F9F9; text-align: center;">
+									내용</th>
+								<td colspan="3"><textarea cols=100 " rows="10"
+										ng-model="content" /></td>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn w-xs btn-primary" ng-click="save()">Ok</button>
+					  <button type="button" class="btn w-xs btn-default" ng-click="cancel()">cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

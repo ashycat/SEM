@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h3 class="modal-title">배차</h3>
+</div>
+<div class="modal-body" style="padding-top:10px;padding-bottom:0px;">
+    <div class="table-responsive" style="overflow:visible;">
+        <table cellpadding="1" cellspacing="1" class="table" style="padding:5px">
+            <colgroup>
+                <col width="25"/>
+                <col width="80"/>
+                <col width="60"/>
+                <col width="25"/>
+            </colgroup>
+            <thead>
+                <tr style="padding:5px;">
+                    <th style="padding:5px;">선택</th>
+                    <th style="padding:5px;">모델명</th>
+                    <th style="padding:5px;">차량번호</th>
+                    <th style="padding:5px;">무게</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="truck in trucks" >
+                    <td><input type="radio" name="truck" value="[[truck.id]]" ng-model="param.truckId"></td>
+                    <td>[[truck.model]]</td>
+                    <td>[[truck.car_number]]</td>
+                    <td>[[truck.weight]]</td>
+                </tr>
+            </tbody>
+        </table>
+        <label style="color:red;" ng-if="code"> ([[code]]) [[message]] </label>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn w-xs btn-primary" ng-click="allocate()">배차</button>
+    <button type="button" class="btn w-xs btn-default" ng-click="cancel()">취소</button>
+</div>

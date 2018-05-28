@@ -1,0 +1,24 @@
+<div id="navigation" ng-controller="common/menuController">
+	<div>
+		<ul side-navigation class="nav" id="side-menu"  ng-repeat="item in menu">
+			<li ui-sref-active="active" ng-show="!existSub(item)">
+				<a ui-sref="[[item.path]]"> 
+					<span class="nav-label">[[item.name]]</span>
+					<span class="label label-success pull-right">[[item.desc]]</span>
+				</a>
+			</li>
+			<li ui-sref-active="active" ng-class="{active: isCurrent(item)}" ng-show="existSub(item)">
+				<a href="#"><span class="nav-label">[[item.name]]</span><span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level" ng-class="{in: isCurrent(item)}">
+					<li ui-sref-active="active" ng-repeat="sub in item.sub">
+						<a ui-sref="[[sub.path]]">
+							[[sub.name]] 
+							<span class="label label-success pull-right">[[sub.desc]]</span>
+						</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+</div>a

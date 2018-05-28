@@ -1,0 +1,132 @@
+<div class="modal-header">
+    <h3 class="modal-title">오더 상세</h3>
+</div>
+<div class="modal-body" style="padding-top:10px;padding-bottom:0px;">
+    <div class="table-responsive" style="overflow:visible;">
+        <table cellpadding="1" cellspacing="1" class="table" style="padding:5px">
+            <tr style="padding:5px">
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    종류  
+                </th>
+                <td style="width:300px;padding:5px;">
+                    <label>[[order.type | orderType]]</label>
+                </td>
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    긴급/왕복
+                </th>
+                <td style="width:320px;padding:5px">
+                    <div style="padding-right:20px;">
+                        <label ng-show="order.is_quick">긴급</label>
+                    </div>
+                    <div>
+                        <label ng-show="order.is_shuttle">왕복</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px">
+                    화물종류 
+                </th>
+                <td style="width:320px;padding:5px;">
+                    <label>[[goods.name]]</label>
+                    <label ng-show="goods.is_mix"> / 혼적</label>
+                </td>
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    무게/길이 
+                </th>
+                <td style="padding:5px">
+                    <label>[[goods.weight]] 톤(ton) </label> &nbsp;&nbsp;&nbsp;  
+                    <label>[[goods.length]] 미터(m) </label>
+                </td>
+            </tr>
+            <tr style="padding:5px">
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    추가정보 
+                </th>
+                <td colspan="3" style="padding:5px">
+                    <label>[[goods.description]]</label> 
+                </td>
+            </tr>
+            <tr style="padding:5px">
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    상차지
+                </th>
+                <td style="width:320px;padding:5px;">
+                    [[order.source]]
+                </td>
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    하차지
+                </th>
+                <td style="width:320px;padding:5px">
+                    [[order.destination]]
+                </td>
+            </tr>
+            <tr style="padding:5px">
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    상차시간
+                </th>
+                <td style="width:300px;padding:5px;" >
+                    <label>[[order.load_datetime | date : 'yyyy-MM-dd hh:mm']]</label>
+                </td>
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    하차시간
+                </th>
+                <td style="width:300px;padding:5px;">
+                    <label>[[order.unload_datetime | date : 'yyyy-MM-dd hh:mm']]</label>
+                </td>
+            </tr>
+            <tr style="padding:5px">
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    상차방법
+                </th>
+                <td style="width:300px;padding:5px;">
+                    <label>[[order.load_method | loadMethod]]</label>
+                </td>
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    하차방법
+                </th>
+                <td style="width:300px;padding:5px">
+                    <label>[[order.unload_method | loadMethod]]</label>
+                </td>
+            </tr>
+            <tr style="padding:5px">
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    차종
+                </th>
+                <td style="width:350px;padding:5px">
+                    <label>[[order.car_type | carType]]</label>
+                </td>
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    톤수
+                </th>
+                <td style="width:350px;padding:5px">
+                    <label>[[order.weight]]</label>
+                </td>
+            </tr>
+            <tr style="padding:5px">
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    지불방식
+                </th>
+                <td style="width:300px;padding:5px;">
+                    <div class="checkbox-inline" style="padding:0;padding-left:0px;margin-left:0px;">
+                        <label>[[order.payment_type | paymentType]]</label>
+                    </div>
+                </td>
+                <th style="width:80px;background-color:#F9F9F9;text-align:center;padding:5px;">
+                    운송료/<br/>
+                    수수료
+                </th>
+                <td style="width:350px;padding:5px">
+                    <label>운송료 : [[order.freight | currency:'₩':0]] </label> 
+                    / 
+                    <label>수수료 : [[order.fee | currency:'₩':0]]</label> <br/>
+                    <label>합계 : [[order.freight*1 + order.fee*1 | currency:'₩':0]]</label>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn w-xs btn-primary" ng-click="allocOrder()">신청</button>
+    <button type="button" class="btn w-xs btn-default" ng-click="cancel()">취소</button>
+</div>
