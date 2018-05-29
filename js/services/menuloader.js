@@ -1,11 +1,11 @@
 define(['jquery', 'angular'],
         function($, angular) {
     var loaded;
-    
+
     var menuUrl = 'views/menu/' + app_config.type + '.json';
-    
+
     function initMenuItems(menuItems, id) {
-      
+
       for (var i = 0; i < menuItems.length; i++) {
         var item = menuItems[i];
         item.id = angular.copy(id);
@@ -16,7 +16,7 @@ define(['jquery', 'angular'],
       }
       return menuItems;
     }
-    
+
     var load = function(ok, fail) {
       if (angular.isUndefined(loaded)) {
         $.ajax({
@@ -27,7 +27,8 @@ define(['jquery', 'angular'],
           dataType:'text',
           success: function(data, status) {
 //            var json = $.parseJSON(data);
-            var json = eval("(" + data + ")"); 
+            var json = eval("(" + data + ")");
+             
             loaded = initMenuItems(json, []);
             (ok || angular.noop)(loaded);
           },

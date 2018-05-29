@@ -1,0 +1,126 @@
+[
+ {
+   name: '대쉬보드',
+   roles: ['admin', 'operator', 'broker'],
+   url: '/dashboard',
+   path: 'broker/dashboard',
+   visible:true,
+   deps: [
+         ]
+ },
+ {
+   name: '오더',
+   roles: ['broker'],
+   url: '/order',
+   path: 'broker/order',
+   visible:true,
+   deps: [
+          'controllers/broker/addOrderController',
+          'controllers/broker/updateOrderController',
+          'controllers/broker/showOrderController'
+         ],
+   desc : 'hot'
+ },
+ {
+   name: '고객',
+   roles: ['broker'],
+   url: '/customer',
+   path: 'broker/customer',
+   visible:true,
+   deps: [
+          'controllers/broker/customerController',
+          'controllers/broker/addConsignerController'
+         ],
+   desc : 'hot'
+ },
+ {
+   name: '화주관리',
+   roles: ['broker'],
+   url: '/consigner',
+   path: 'broker/consigner',
+   visible:true,
+   deps: [
+      'controllers/broker/addConsignerController'
+         ],
+   desc : ''
+ },
+ {
+   name: '멤버관리',
+   roles: ['broker'],
+   url: '/members',
+   path: 'broker/members',
+   visible:true,
+   deps: [
+   			'controllers/broker/updateMemberController',
+   			'controllers/broker/addMemberController'
+         ],
+   desc : ''
+ },
+ {
+   name: '캘린더',
+   roles: ['broker'],
+   url: '/common/calendar',
+   path: 'common/calendar',
+   visible:true,
+   deps: [
+          'controllers/common/calendarController',
+          'controllers/common/calendar/addEventController',
+          'controllers/common/calendar/showEventController'
+         ]
+ },
+ {
+   name: '통계',
+   roles: ['broker'],
+   url: '/broker/statistics',
+   path: 'broker/statistics',
+   visible:true,
+   deps: [
+          'controllers/user/statisticsController'
+         ]
+ },
+ {
+   name: 'Landing Page',
+   roles: ['all'],
+   url: '/common/landing',
+   path: 'common/landing',
+   visible:true,
+   deps: [
+          'controllers/common/landingController'
+         ]
+ },
+ {
+   name: '헬프데스크',
+   path: 'common/helpdesk',
+   roles: ['all'],
+   visible:true,
+   sub: [{
+     name: '공지사항',
+     roles: ['all'],
+     url: '/common/helpdesk/notice',
+     path: 'common/helpdesk/notice',
+     visible:true,
+     deps: [
+            'controllers/common/helpdesk/showNoticeController',
+            'controllers/common/helpdesk/addNoticeController'
+           ]
+   }, {
+     name: '메시지',
+     roles: ['user'],
+     url: '/common/helpdesk/message',
+     path: 'common/helpdesk/message',
+     visible:true,
+     deps: [
+            'controllers/common/helpdesk/showMessageController',
+            'controllers/common/helpdesk/addMessageController'
+           ]
+   }]
+ },
+ {
+   name : '로그인', 
+   url: '/common/login',
+   path : 'common/login',
+   visible:false,
+   deps : [
+           ]
+ }
+]

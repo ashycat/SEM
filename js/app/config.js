@@ -1,21 +1,21 @@
 
 
-define(['jquery',
+define(['angular',
         'app',
         'app/' + app_config.type + '-routes',
-        'services/menuloader'
-//        'interceptors/http',
-//        'controllers/common',
-//        'services/restapi',
-//        'directives/common',
-//        'modules/route-resolver'
+        'services/menuloader',
+        'interceptors/http',
+        'controllers/common',
+        'services/restapi',
+        'directives/common',
+        'modules/route-resolver'
         ],
-        function($, app, routeConfig, menuloader) {
+        function(angular, app, routeConfig, menuloader) {
   'use strict';
 
-  var isUndefined = $.isUndefined;
-  var isDefined = $.isDefined;
-  var forEach = $.forEach;
+  var isUndefined = angular.isUndefined;
+  var isDefined = angular.isDefined;
+  var forEach = angular.forEach;
 
   app.config(function($loadOnDemandProvider) {
     $loadOnDemandProvider.setModules({
@@ -81,7 +81,7 @@ define(['jquery',
   // configures angular-ui-router
   app.config(function($stateProvider, $routeResolverProvider, $urlRouterProvider, $interpolateProvider ) {
 
-    //$interpolateProvider.startSymbol('[[').endSymbol(']]');
+    $interpolateProvider.startSymbol('[[').endSymbol(']]');
 
     var resolve = $routeResolverProvider.resolve;
     var registerUrl = function(items) {
@@ -90,13 +90,14 @@ define(['jquery',
           $stateProvider.state(item.path,
                   resolve(item.url, item.path, item.deps, item.modules));
         }
-        if ($.isArray(item.sub)) {
+        if (angular.isArray(item.sub)) {
           registerUrl(item.sub);
         }
       });
     };
+
     menuloader(registerUrl);
-//    $urlRouterProvider.otherwise("/dashboard");
+    $urlRouterProvider.otherwise("/dashboard");
 
     if (!isUndefined(routeConfig)) {
       if (!isUndefined(routeConfig.redirect)) {

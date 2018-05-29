@@ -1,0 +1,13 @@
+[
+ {
+   name: '대쉬보드',
+   url: '/dashboard',
+   path: 'admin/dashboard',
+   roles: ['admin'],
+   visible:true,
+   deps: [
+         ],
+   desc : 'admin'
+ }
+
+]

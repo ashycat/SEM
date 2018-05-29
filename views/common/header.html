@@ -1,0 +1,80 @@
+<div class="wrapper row1">
+  <header id="header" class="clear">
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="index.html"><span style="font-family:'Malgun Gothic';">퇴직자 모니터링</span></a></h1>
+    </div>
+  </header>
+
+</div>
+<nav role="navigation">
+  <minimaliza-menu></minimaliza-menu>
+  <div class="small-logo">
+          <span class="text-primary">Camel APP</span>
+  </div>
+  <!--form role="search" class="navbar-form-custom" method="post" action="#">
+      <div class="form-group">
+              <input type="text" placeholder="Search something special"
+                      class="form-control" name="search">
+      </div>
+  </form-->
+  <div ng-controller="common/headerController" class="navbar-right">
+      <ul class="nav navbar-nav no-borders" style="padding:10px 10px 10px 10px;">
+          <select class="form-control m-b" name="roles" ng-model="pageRole" ng-change="movePage()">
+              <option ng-repeat="role in roles" value="[[role.key]]" ng-selected="[[role.isActive]]">[[role.name]] 기능</option>
+          </select>
+      </ul>
+      <ul class="nav navbar-nav no-borders" >
+          <li ng-if="isLogin()">
+              <a ui-sref="common/profile"">
+                  <img src="images/profile.jpg" class="img-circle m-b" alt="logo" style="width:30px;height:30px;">
+                  <span style="vertical-align:top;padding:5px 0px 0px 5px;">
+                  [[userName]]
+                  </span>
+              </a>
+          </li>
+          <li ng-if="!isLogin()" class="dropdown" dropdown>
+              <a class="dropdown-toggle label-menu-corner" href="#" dropdown-toggle>
+                  [[userName]]
+              </a>
+              <ul class="dropdown-menu hdropdown animated flipInX">
+                  <li><a href="#/common/login"> 로그인 </a></li>
+                  <li><a href="#/common/register"> 회원등록 </a></li>
+              </ul>
+          </li>
+      </ul>
+      <ul class="nav navbar-nav no-borders">
+          <li class="dropdown" dropdown>
+              <a class="dropdown-toggle" ui-sref="common/helpdesk/notice">
+                  <i class="pe-7s-speaker"></i>
+              </a>
+          </li>
+          <li ng-if="isLogin()" class="dropdown" dropdown >
+              <a class="dropdown-toggle label-menu-corner" href="#" dropdown-toggle>
+                  <i class="pe-7s-mail"></i> <!--span class="label label-success">5</span-->
+              </a>
+              <ul class="dropdown-menu hdropdown animated flipInX">
+                  <div class="title">최근 5개 메시지</div>
+                  <li ng-repeat="message in messages">
+                      <a ng-click="showMessage(message.id)"> [[message.id]] [[message.subject]]
+                      <span ng-if="!message.is_read" class="label label-success">N</span></a>
+                  </li>
+                  <li class="summary"><a href="#/common/helpdesk/message">메시지 페이지로 이동</a></li>
+              </ul>
+          </li>
+          <li ng-if="!isLogin()" class="dropdown">
+              <a ui-sref="common/register">
+                  <i class="pe-7s-user"></i>
+              </a>
+          </li>
+          <li>
+              <a ng-click="goLogin()">
+                  <i class=[[loginStyle]]></i>
+              </a>
+          </li>
+      </ul>
+  </div>
+</nav>
+
+
+    <!-- ################################################################################################ -->
